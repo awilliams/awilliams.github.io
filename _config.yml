@@ -2,7 +2,7 @@ title:            awilliams.github.io
 tagline:          devblog
 description:      
 #Comment out url when working locally to resolve base urls correctly
-#url:              http://awilliams.github.io/
+url:              http://awilliams.github.io/
 
 # Owner/author information
 owner:

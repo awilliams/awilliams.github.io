@@ -1,6 +1,6 @@
 title:            awilliams.github.io
 tagline:          devblog
-description:      
+description:      "So I don't have to remember this later"
 #Comment out url when working locally to resolve base urls correctly
 url:              http://awilliams.github.io
 
@@ -8,7 +8,7 @@ url:              http://awilliams.github.io
 owner:
   name:           Adam Williams
   avatar:         
-  bio:            "so i don't have to remember this later"
+  bio:            
   email:          
   # Social networking links are used in author-bio sidebar. Update and remove as you like.
   twitter:        "acw5"

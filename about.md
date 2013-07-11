@@ -1,9 +1,9 @@
 ---
 layout: page
 permalink: /about/index.html
-title: awilliams
+title: About This Blog...
 image:
   feature: texture-feature-02.jpg
 ---
 
-Hello.
+Hello. This is my space to keep a list of some useful thing that I don't want to forget. Maybe you'll even find something useful.

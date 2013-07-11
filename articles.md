@@ -1,9 +1,9 @@
 ---
 layout: post-index
-permalink: /articles/index.html
-title: Articles
-tagline: A List of Posts
-tags: [blog, graphic design]
+permalink: /posts/index.html
+title: Posts
+tagline: List of Posts
+tags: [devblog]
 image:
   feature: texture-feature-03.jpg
 ---

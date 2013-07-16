@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Empty folders in git"
-tagline: 
+tagline:
+description: "Two quick solutions for empty folders in git"
 category: articles
 tags: [git]
 ---

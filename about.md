@@ -1,12 +1,14 @@
 ---
 layout: page
 permalink: /about/index.html
-title: About This Blog...
+title: About This Site...
 image:
   feature: texture-feature-02.jpg
 ---
 
 Hello. This is my space to keep a list of some useful thing that I don't want to forget. Maybe you'll even find something useful.
+
+If I have to look something up, usually on StackOverflow more than once, I try to jot it down here.
 
 ------------------------
 

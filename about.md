@@ -3,7 +3,7 @@ layout: page
 permalink: /about/index.html
 title: About This Site...
 image:
-  feature: enlighten.jpg #IMG_20130317_195347.jpg
+  feature: enlighten.jpg
 ---
 
 Hello. This is my space to keep a list of some useful thing that I don't want to forget. Maybe you'll even find something useful.

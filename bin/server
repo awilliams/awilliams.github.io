@@ -1,1 +1,1 @@
-jekyll server --watch --config=_config.dev.yml
+jekyll server --watch --config _config.yml,_config.dev.yml

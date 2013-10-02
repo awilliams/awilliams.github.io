@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "ssh config file"
+title: "SSH config file"
 tagline:
-description: "helpful config file for ssh client"
+description: "SSH client config file tips"
 category: articles
 tags: [ssh]
 ---

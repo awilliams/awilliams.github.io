@@ -251,6 +251,6 @@ $ bundle exec bin/rtanque start sample_bots/keyboard.rb bots/game_over.rb bots/S
 
 -------------
 
-I hope you have found this guide useful. If you find something lacking, or even if you'd like to leave a comment, open a pull-request, or find me on Twitter [@acw5](https://twitter.com/ACW5).
+I hope you have found this guide useful. If you find something lacking, or even if you'd like to leave a comment, [open a pull-request](https://github.com/awilliams/awilliams.github.io/blob/master/_posts/2014-01-11-rtanque-getting-started.markdown), or find me on Twitter [@acw5](https://twitter.com/ACW5).
 
 ![Game Over](/images/rtanque_boom.png "Booom")

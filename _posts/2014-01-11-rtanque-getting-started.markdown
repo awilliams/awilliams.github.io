@@ -234,7 +234,7 @@ bundle exec bin/rtanque start sample_bots/keyboard.rb bots/game_over.rb
 
 We have seen how to control our tank and also how to receive input about the game state. Now it is time to add some logic to help our tank better defend itself and maybe even win a match. Take a look at the [SeekAndDestroy](https://github.com/awilliams/RTanque/blob/master/sample_bots/seek_and_destroy.rb) tank, which is included in the repository, for an example of a complete working tank. 
 
-**Distrubution**
+**Distribution**
 
 At some point, you may want to share your tank with others, or maybe download a tank.
 

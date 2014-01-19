@@ -18,25 +18,28 @@ Some familiarity with the command line and Ruby would be helpful. All the follow
 
 ### Prerequisites
 
-Before getting started, make sure you have the following installed:
+Before getting started, make sure you have the following installed. Links to installation guides are provided if not.
 
 **Git** - required to download the RTanque code. Make sure `git --version` outputs something similar to the following:
 {% highlight bash %}
 $ git --version
 git version 1.8.3.4 (Apple Git-47)
 {% endhighlight %}
+[Git installation](http://git-scm.com/downloads)
 
 **Ruby** - language we'll be using. Must use version 1.9 - 2.0 (2.1 is not yet supported). Make sure `ruby -v` outputs something similar to the following:
 {% highlight bash %}
 $ ruby -v
 ruby 2.0.0p353 (2013-11-22 revision 43784) [x86_64-darwin13.0.2]
 {% endhighlight %}
+[Ruby installation](https://www.ruby-lang.org/en/installation)
 
 **Bundler** - ruby package manager. Should be installed already with ruby, but just in case check the output of `bundle -v`
 {% highlight bash %}
 $ bundle -v
 Bundler version 1.3.5
 {% endhighlight %}
+[Bundler installation](http://bundler.io/#getting-started)
 
 ### Install
 
@@ -106,13 +109,13 @@ $ bundle exec bin/rtanque start sample_bots/keyboard.rb bots/game_over.rb
 {% endhighlight %}
 Hopefully you saw a new RTanque window open, and your lifeless tank just sitting there. 
 
-Let's give your tank some intelligence. 
+Time to give your tank some intelligence. 
 
 ### Basics
 
 [**RTanque::Bot::Brain**](http://rubydoc.info/github/awilliams/RTanque/master/RTanque/Bot/Brain) -
-Our tank is an instance of this class. RTanque uses a very simple loop to update the state of the game. Every iteration of this loop calls the `tick!#` method.
-This is your chance to react to any changes in the game since the last tick. This method is called many times per second.
+This is where you'll spend most of your time, as your tank is an instance of this class. RTanque uses a loop to update the state of the game. Every iteration of this loop calls the `tick!#` method on your Brain instance.
+This is your chance to react to any changes in the game since the last tick, by reading from the sensors and giving commands. This method is called many times per second.
 
 There are two primary methods `#commands` and `#sensors` to control the tank and get information about your tank, respectively. We'll go into more detail about these methods below.
 
@@ -129,29 +132,33 @@ Locations of objects, such as tanks, are described with instances of this class.
 
 ### Movement 
 
-Now we have to code a bit of Ruby to get our tank moving. 
+Now we have to code a bit of Ruby to get your tank moving. 
 
 Have a look at the [RTanque::Bot::Command](http://rubydoc.info/github/awilliams/RTanque/master/RTanque/Bot/Command) class.
 Each tick, you are provided with a new instance of `Command` via `Brain#command`.
 
-There are limits to how you can control your tank. There's a speed limit, rotation limit, etc. See [RTanque::Bot::BrainHelper](http://rubydoc.info/github/awilliams/RTanque/master/RTanque/Bot/BrainHelper) for some useful constants.
+There are limits to how you can control your tank. There's a speed limit, rotation limit, etc. Don't worry too much about that now, because if you provide a speed over the limit, for example, it will automatically be corrected to the maximum allowed. 
+See [RTanque::Bot::BrainHelper](http://rubydoc.info/github/awilliams/RTanque/master/RTanque/Bot/BrainHelper) for some useful constants when setting command values.
 
 There are three main aspects of your tank to control:
 
-**Body**. The main part of the tank which everything else is attached to. The body can move forward and backward at a variable speed, and also can turn. The two methods 
+**Body**. The main part of the tank which everything else is attached to. The body can move forward and backward at a variable speed, and also can turn at a variable speed. The two methods 
 to use are `Command#speed=` and `Command#heading=`. Pass a negative speed to move backwards. 
 
 There limits to the values you can pass to each of these methods. If you pass a larger value than is allowed, it will be reduced to the maximum allowed.
 
-**Radar**. We can rotate our radar independently of the body to detect other tanks. The radar has a limited field of vision so you can only detect other tanks that your radar is pointed at. Use the method `Command#radar_heading=`, passing an instance of `Heading` to turn the radar.
+**Radar**. The radar can rotate independently of the body. It's purpose is to detect other tanks. The radar has a limited field of vision so you can only detect other tanks that your radar is generally pointed at. 
+Use the method `Command#radar_heading=`, passing an instance of `Heading`, to rotate the radar.
 
-**Turret**. The turret/gun can fire shells and can also rotate freely. Rotate the turret with `Command#turret_heading=` and fire the gun with `Command#fire`. Send a large value to `#fire` to fire a fast shell, and a smaller value to fire a slower shell.
+**Turret**. The turret/gun can fire shells and can also rotate independently. Rotate the turret with `Command#turret_heading=` and fire the gun with `Command#fire`. 
+Send a large value to `#fire` to fire a fast shell, and a smaller value to fire a slower shell.
 
 Slower shells do less damage, but can be fired in rapid succession. Fast shells do more damage, but require more time between shots for the turret to recover.
 
-**Example**. To get a better idea of how all this comes together to control our tank, let's make some changes to our code. Provided below are some sample changes, but you're encouraged to experiment with variations to better understand.
+**Example**. Enough explaining! To get a better idea of how all this comes together to control your tank, make some changes to your code. 
+Provided below are some sample changes, but you're encouraged to experiment with variations to better understand how to control the tank.
 
-Change the `#tick!` method of your tank to something to the following:
+Change the `#tick!` method of your tank to something similar to the following:
 {% highlight ruby %}
 def tick!
   # head right
@@ -173,7 +180,7 @@ After making changes, start a new match. Depending on where your bot starts, you
 bundle exec bin/rtanque start sample_bots/keyboard.rb bots/game_over.rb
 {% endhighlight %}
 
-We will need some help from the tank sensors to figure out better how to better react. 
+By this point, you can hopefully drive your tank as you would like, but you will be driving blind so to speak. You need help from the tank's sensors to figure out how to better react. 
 
 ### Input 
 
@@ -186,9 +193,11 @@ There are many things we can detect about the game state via the `Sensors` insta
 
 **Gun Energy**. If this value is below zero, you cannot fire shells. If you fire fast shells, your gun energy depletes more quickly than slower shells.
 
-**Radar**. It is useful to detect the position of other tanks. `#radar` can be treated like an array of [`Radar::Reflection`](http://rubydoc.info/github/awilliams/RTanque/master/RTanque/Bot/Radar/Reflection) instances. Depending on the heading of your radar, you will be able to detect some or no tanks.
+**Radar**. It is useful to detect the position of other tanks. `#radar` can be treated like an array of [`Radar::Reflection`](http://rubydoc.info/github/awilliams/RTanque/master/RTanque/Bot/Radar/Reflection) instances. 
+A reflection contains the name, distance, and heading of the detected tank.
+Depending on the heading of your radar, you will be able to detect some or no tanks.
 
-**Example**. Like before, we will modify the `#tick!` method of our tank to try out some sensing methods.
+**Example**. Like before, we will modify the `#tick!` method of your tank to try out some sensing methods.
 
 Change the `#tick!` method of your tank to something to the following:
 {% highlight ruby %}
@@ -232,11 +241,12 @@ bundle exec bin/rtanque start sample_bots/keyboard.rb bots/game_over.rb
 
 ### Summary 
 
-We have seen how to control our tank and also how to receive input about the game state. Now it is time to add some logic to help our tank better defend itself and maybe even win a match. Take a look at the [SeekAndDestroy](https://github.com/awilliams/RTanque/blob/master/sample_bots/seek_and_destroy.rb) tank, which is included in the repository, for an example of a complete working tank. 
+We have seen how to control a tank and also how to analyze the game state. Now it is time to add some logic to help your tank better defend itself and maybe even win a match. 
+Take a look at the [SeekAndDestroy](https://github.com/awilliams/RTanque/blob/master/sample_bots/seek_and_destroy.rb) tank, which is included in the repository, for an example of a complete working tank. 
 
 **Distribution**
 
-At some point, you may want to share your tank with others, or maybe download a tank.
+At some point, you may want to share your tank with others, or maybe download a friend's tank.
 
 The first step to distributing your tank is to upload your tank [as a Gist](https://gist.github.com/) (either public or secret). After creating your gist, it will be assigned an id. With this id, others can download your tank. 
 
@@ -251,6 +261,6 @@ $ bundle exec bin/rtanque start sample_bots/keyboard.rb bots/game_over.rb bots/S
 
 -------------
 
-I hope you have found this guide useful. If you find something lacking, or even if you'd like to leave a comment, [open a pull-request](https://github.com/awilliams/awilliams.github.io/blob/master/_posts/2014-01-11-rtanque-getting-started.markdown), or find me on Twitter [@acw5](https://twitter.com/ACW5).
+I hope you have found this guide useful. If you find something lacking, or even if you'd like to leave a comment, [open a pull-request](https://github.com/awilliams/awilliams.github.io/blob/master/_posts/2014-01-11-rtanque-getting-started.markdown) or find me on Twitter [@acw5](https://twitter.com/ACW5).
 
 ![Game Over](/images/rtanque_boom.png "Booom")

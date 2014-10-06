@@ -14,7 +14,7 @@ There are two situations that can arise when using git and working with empty di
 touch path/to/empty/dir/.keep; git add path/to/empty/dir/.keep
 {% endhighlight %}
 
- *  You'd like to an an empty folder to git, but an files created inside of it should be ignored. This could occur if you're creating a `logs` directory for example. Solution: **Add a .gitignore file inside the directory with the following contents**
+ *  You'd like to add an empty folder to git, but all files created inside of it should be ignored. This could occur if you're creating a `logs` directory for example. Solution: **Add a .gitignore file inside the directory with the following contents**
 {% highlight bash %}
 *
 !.gitignore

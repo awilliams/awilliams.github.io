@@ -49,8 +49,8 @@ p.enlarge span { color: #000 }
 
 /* //-- section styles -- */
 
-a#pdf { display: block; position: absolute; top: 8px; right: 245px; background: #666; color: white; padding: 6px 20px 6px 20px; text-decoration: none;  }
-a#pdf:hover { background: #222; }
+#pdf { display: block; float: right; background: #666; color: white; padding: 4px 15px 4px 15px; margin-top: 8px; color: white; text-decoration: none; }
+#pdf:hover { background: #222; }
 
 .job { position: relative; margin-bottom: 1em; padding-bottom: 1em; border-bottom: 1px solid #ccc; }
 .job h4 { position: absolute; top: 0.35em; right: 0; width: 30%; }
@@ -78,8 +78,8 @@ a#pdf:hover { background: #222; }
     {
         display: none !important;
     }
-    .print-page-break { page-break-after: always; }
-    #inner { padding: 10px 10px; border: none; background: none; }
+    .print-page-break { break-before: always; }
+    #inner { padding: 0px 50px; border: none; background: none; }
     a { color: inherit; text-decoration: none; }
     .yui-gf .yui-u{width:82.2%;}
 }

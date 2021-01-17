@@ -26,7 +26,7 @@ body { font-family: Helvetica; color: #444; }
 #hd h2 { text-transform: uppercase; letter-spacing: 2px; }
 
 /* //-- footer -- */
-#ft { padding: 2em 0 2em 0; font-size: 92%; border-top: 1px solid #ccc; text-align: center; }
+#ft { padding: 1em 0 0 0; font-size: 90%; border-top: 1px solid #ccc; text-align: center; }
 #ft p { margin: 0; text-align: center;   }
 
 /* //-- core typography and style -- */
@@ -53,9 +53,12 @@ p.enlarge span { color: #000 }
 #pdf:hover { background: #222; }
 
 .job { position: relative; margin-bottom: 1em; padding-bottom: 1em; border-bottom: 1px solid #ccc; }
-.job h4 { position: absolute; top: 0.35em; right: 0; width: 30%; }
-.job p { margin: 0.75em 0 0.75em 0; }
-.job li { list-style: disc inside; border: none; }
+.job h4 { position: absolute; top: 0.35em; right: 0; }
+.job h4 a { float: right; }
+.job p, .job li { margin: 0.75em 0 0.75em 0; font-size: 110%; line-height: 18px; }
+.job li { list-style: square inside; border: none; }
+.job.last { padding-bottom: 0; }
+.job .joblink { display: inline; font-size: 65%; }
 
 .last { border: none; }
 .skills-list {  }
@@ -79,7 +82,8 @@ p.enlarge span { color: #000 }
         display: none !important;
     }
     .print-page-break { break-before: always; }
-    #inner { padding: 0px 50px; border: none; background: none; }
+    #inner { padding: 0px 20px; border: none; background: none; }
     a { color: inherit; text-decoration: none; }
     .yui-gf .yui-u{width:82.2%;}
+    #ft { border-top: none; }
 }

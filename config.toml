@@ -1,0 +1,9 @@
+baseURL = "https://awilliams.github.io/"
+languageCode = "en-us"
+title = "awilliams:dev"
+theme = "etch"
+
+pygmentsCodeFences = true  # enable GitHub style code snippets
+
+[params]
+  highlight = true

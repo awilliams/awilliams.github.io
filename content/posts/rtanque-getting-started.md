@@ -1,6 +1,7 @@
 ---
 title: "RTanque getting started"
 date: 2014-04-19T13:12:00-06:00
+lastmod: 2021-04-22T12:00:00-06:00
 draft: false
 ---
 ![RTanque](/images/rtanque.png "RTanque")

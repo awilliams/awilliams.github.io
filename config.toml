@@ -1,7 +1,7 @@
 baseURL = "https://awilliams.github.io/"
 languageCode = "en-us"
 title = "awilliams:dev"
-staticDir = ["cv"]
+staticDir = ["cv", "static"]
 
 theme = "etch"
 pygmentsCodeFences = true  # enable GitHub style code snippets

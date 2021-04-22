@@ -7,7 +7,7 @@
 	<time>{{ .Date.Format "January 2, 2006" }}</time>
       {{- end -}}
       {{- if isset .Params "lastmod" -}}
-	{{- if ne .Date .Lastmod -}}
+	{{- if ne (.Date.Format "January 2, 2006") (.Lastmod.Format "January 2, 2006") -}}
 	  <br/>
 	  Updated <time>{{ .Lastmod.Format "January 2, 2006" }}</time>
 	{{- end -}}

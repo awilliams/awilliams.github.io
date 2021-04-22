@@ -3,7 +3,8 @@ generate:
 	hugo \
 		--cleanDestinationDir \
 		--enableGitInfo \
-		--destination ./public
+		--destination ./public \
+		--baseURL https://awilliams.github.io/
 
 .PHONY: server
 server:

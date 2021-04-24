@@ -18,6 +18,7 @@ cv/Adam_Williams.pdf: cv/cv.html $(wildcard cv/css/cv/*.css)
 		cv/cv.html cv/Adam_Williams.pdf
 
 
+# Start development server
 .PHONY: server
 server:
 	hugo server \

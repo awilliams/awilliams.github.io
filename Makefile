@@ -1,5 +1,5 @@
 .PHONY: generate
-generate: Adam_Williams.pdf
+generate: cv/Adam_Williams.pdf
 	hugo \
 		--cleanDestinationDir \
 		--minify \
@@ -8,8 +8,7 @@ generate: Adam_Williams.pdf
 		--baseURL https://awilliams.github.io/
 
 
-.PHONY: Adam_Williams.pdf
-Adam_Williams.pdf:
+cv/Adam_Williams.pdf: cv/cv.html $(wildcard cv/css/cv/*.css)
 	wkhtmltopdf \
 		--title "Adam Williams" \
 		--allow . \

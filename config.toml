@@ -1,6 +1,6 @@
 baseURL = "https://awilliams.github.io/"
 languageCode = "en-us"
-title = "awilliams:dev"
+title = "awilliams"
 staticDir = ["cv", "static"]
 
 theme = "etch"

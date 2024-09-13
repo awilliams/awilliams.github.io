@@ -15,7 +15,7 @@ cv/Adam_Williams.pdf: wkhtmltopdf.image cv/cv.html $(wildcard cv/css/cv/*.css)
 	docker run \
 		--rm \
 		--volume $(shell pwd):/SRC:ro \
-		--volume $(shell cd cv && pwd)/Adam_Williams.pdf:/OUT/Adam_Williams.pdf \
+		--volume $(shell pwd)/cv/Adam_Williams.pdf:/OUT/Adam_Williams.pdf \
 		--workdir /SRC \
 		wkhtmltopdf \
 			wkhtmltopdf \

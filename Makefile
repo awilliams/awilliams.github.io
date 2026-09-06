@@ -1,36 +1,25 @@
-.PHONY: generate
-generate: cv/Adam_Williams.pdf
+.PHONY: render
+render:
+	rm cv/*
 	docker run \
 		--rm \
-		--volume $(shell pwd):/SRC \
-		--workdir /SRC \
-		klakegg/hugo:0.93.2-alpine \
-			--destination ./docs \
-			--cleanDestinationDir \
-			--minify \
-			--baseURL https://awilliams.github.io/
+		--volume ./cv:/SRC/out/ \
+		--volume ./AdamWilliams.yaml:/SRC/AdamWilliams.yaml:ro \
+		rendercv:latest \
+		render \
+			--dont-generate-png \
+			--typst-path /tmp/Adam_Williams.typ \
+			--markdown-path /SRC/out/Adam_Williams.md \
+			--html-path /SRC/out/Adam_Williams.html \
+			--pdf-path /SRC/out/Adam_Williams.pdf \
+			/SRC/AdamWilliams.yaml
+	cp ./cv/Adam_Williams.html ./public/Adam_Williams.html
+	cp ./cv/Adam_Williams.pdf ./public/Adam_Williams.pdf
 
-cv/Adam_Williams.pdf: wkhtmltopdf.image cv/cv.html $(wildcard cv/css/cv/*.css)
-	touch cv/Adam_Williams.pdf
-	docker run \
-		--rm \
-		--volume $(shell pwd):/SRC:ro \
-		--volume $(shell pwd)/cv/Adam_Williams.pdf:/OUT/Adam_Williams.pdf \
-		--workdir /SRC \
-		wkhtmltopdf \
-			wkhtmltopdf \
-				--title "Adam Williams" \
-				--allow . \
-				--no-background \
-				--no-outline \
-				--print-media-type \
-				cv/cv.html /OUT/Adam_Williams.pdf
-
-.PHONY: wkhtmltopdf.image
-wkhtmltopdf.image:
-	docker build \
-		-t wkhtmltopdf \
-		- < wkhtmltopdf.dockerfile
+.PHONY: build-rendercv
+build-rendercv:
+	docker build ~/src/github.com/rendercv/rendercv \
+		-t rendercv:latest
 
 # Start development server
 .PHONY: server

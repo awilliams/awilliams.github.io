@@ -9,6 +9,8 @@
 # Profile
 Staff software engineer specializing in Go backend systems, building and owning distributed services at scale. Biased toward simple, durable code.
 
+At Fastly, works across both sides of the platform: the edge points of presence (POPs) and the Kubernetes-based control plane, primarily in Go and Rust.
+
 # Experience
 ## **Fastly**, Staff Software Engineer
 
